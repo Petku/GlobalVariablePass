@@ -1,4 +1,4 @@
-#IP1-Projektová praxe #
+# IP1-Projektová praxe #
 DiffKEMP
 ## Zadanie ##
 Napísať llvm-kový pass ktorý bude čítať globálne premenné jednoduchých typov 
