@@ -1,14 +1,13 @@
 cmake_minimum_required(VERSION 3.11)
 project(Pass)
 
-set(ENV{LLVM_HOME} $ENV{HOME}/llvm/build/ )
 
 # we need LLVM_HOME in order not automatically set LLVM_DIR
 if(NOT DEFINED ENV{LLVM_HOME})
-    message(FATAL_ERROR "$LLVM_HOME is not defined")
-else ()
-    set(ENV{LLVM_DIR} $ENV{LLVM_HOME}/lib/cmake/llvm)
+    set(ENV{LLVM_HOME} $ENV{HOME}/llvm/build/ )
 endif()
+
+set(ENV{LLVM_DIR} $ENV{LLVM_HOME}/lib/cmake/llvm)
 
 find_package(LLVM REQUIRED CONFIG)
 
