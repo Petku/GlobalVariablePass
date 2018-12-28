@@ -9,7 +9,8 @@
 
 
 int testInt1 = 142134;
-int testInt2;
+int testInt2 = 5;
+int testInt3;
 
 float testFloat1 = 2.2342;
 float testFloat2 = .1;
@@ -20,7 +21,11 @@ char testChar2 = '\n';
 char testChar3;
 char testChar4 = '\\';
 
-char *testString1 = "Ahoj";
+int testArray1[] = {1, 2, 3, 4, 5};
+int testArray2[5] = {6, 7, 8};
+double testArray3[2] = {.5, 2.75};
+
+char testString1[] = "Ahoj";
 char *testString2 = "Svete";
 char *testString3 = "";
 char *testString4;
@@ -32,8 +37,9 @@ typedef struct {
     char *test3;
 } TTestStruct;
 
-TTestStruct testStruct1 = { 1, 'b', .34, NULL};
+TTestStruct testStruct1 = { 565465, 'b', .34, NULL};
 TTestStruct testStruct2;
+TTestStruct testStruct3 = {0,'a',};
 
 int main()
 {
