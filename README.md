@@ -5,20 +5,19 @@ Napísať llvm-kový pass ktorý bude čítať globálne premenné jednoduchých
 a vypisovať ich defaultné hodnoty.
 
 ## Riesenie funguje ako ##
-Výsledná implementacia funguje ako vypisovanie hodnot:
-```bash
-Out[test.sh]:
-    global_variable_name = type value
+In testsource.c is line as follows:
+```c
+int testInt1 = 141242;
 ```
-napr.:
+Calling in bash:
 ```bash
-testInt1 = i32 142134
+opt -load pass.so -var testInt1 < testsource.bc > /dev/null
+```
+Output of command above:
+```bash
+141242
 ```
 
-Vyuziva vlastne toho ze trieda **Constant** dedi od nadtriedy **Value** pretypovany
-operator _<<_ , ktory vypisuje aj typ aj hodnotu konstanty.
-Ale kedze myslim ze toto nie je zrovna co potrebuje, potrebujem blizsie specifikovat
-ako to mam presnejsie urobit.
 
 ## Building a trivial LLVM pass ##
 >This text is copied from https://github.com/abenkhadra/llvm-pass-tutorial
