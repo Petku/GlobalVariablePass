@@ -185,17 +185,23 @@ namespace {
         }
 
         if (const ConstantExpr *CE = dyn_cast<ConstantExpr>(CV)) {
-            /*
-            auto *val = CE->getAsInstruction();
+            ConstantExpr *constexp = const_cast<ConstantExpr*>(CE);
+            auto *val = constexp->getAsInstruction();
             const CallInst* ci = dyn_cast<CallInst>(val);
             Value* op0 = ci->getOperand(0);
             if (auto* gep = dyn_cast<GetElementPtrInst>(op0)) {
                 if (auto global = dyn_cast<GlobalVariable>(gep->getOperand(0))) {
                     writeConstant(Out, global->getInitializer());
                 }
+                /*
+                unsigned N = gep->getNumOperands();
+                for(unsigned i=1; i<N; ++i){
+                    if (auto global = dyn_cast<GlobalVariable>(gep->getOperand(0))) {
+                        writeConstant(Out, global->getInitializer());
+                    }
+                }
+                 */
             }
-             */
-
             return;
         }
 
