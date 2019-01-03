@@ -185,22 +185,10 @@ namespace {
         }
 
         if (const ConstantExpr *CE = dyn_cast<ConstantExpr>(CV)) {
-            ConstantExpr *constexp = const_cast<ConstantExpr*>(CE);
-            auto *val = constexp->getAsInstruction();
-            const CallInst* ci = dyn_cast<CallInst>(val);
-            Value* op0 = ci->getOperand(0);
-            if (auto* gep = dyn_cast<GetElementPtrInst>(op0)) {
-                if (auto global = dyn_cast<GlobalVariable>(gep->getOperand(0))) {
-                    writeConstant(Out, global->getInitializer());
-                }
-                /*
-                unsigned N = gep->getNumOperands();
-                for(unsigned i=1; i<N; ++i){
-                    if (auto global = dyn_cast<GlobalVariable>(gep->getOperand(0))) {
-                        writeConstant(Out, global->getInitializer());
-                    }
-                }
-                 */
+            Value *firstop = CE->getOperand(0);
+            if (GlobalVariable *GV = dyn_cast<GlobalVariable>(firstop)) {
+                Constant *v = GV->getInitializer();
+                writeConstant(Out, v);
             }
             return;
         }
@@ -213,6 +201,7 @@ char GlobalVariablePass::ID = 0;
 static RegisterPass<GlobalVariablePass> X("globvar", "Global Variable Pass",
                              false /* Only looks at CFG */,
                              false /* Analysis Pass */);
+
 /**
  * Pass for testing script not important !!! Only writes all global variables except internals and starting with str.
  */
