@@ -44,6 +44,16 @@ a potom aj vyuziva parameter -var "nazov_globalnej premennej". Vyuzitie parametr
 $ clang -O3 -emit-llvm testingsource.c -c -o build/testingsource.bc
 $ opt -load build/globvars/LLVMGlobVars.so -var "testInt1" -globvar < testingsource.bc > /dev/null
 ```
+Subor `test.sh` je treba volat s jednym z parametrov v nasledujucej tabulke:
+
+| Prikaz       | Funkcionalita                                    |
+|--------------|--------------------------------------------------|
+| test.sh      | Vypise funckionalitu parametrov                  |
+| test.sh -all | Vypise hodnotu vsetkych globalnych premennych   |
+| test.sh -listids | Vypise identifikatory globalnych premennych |
+| test.sh -allinfo | Vypise riadok kodu kde je definovana globalna premenna a jej hodnotu |
+| test.sh -var <variable_name> | Vypise iba hodnotu premennej ktora je zadana ako *variable_name* |
+
 Blizsie informacie ako funguje testovanie su v subore **test.sh**:
 ```bash
 $ ./test.sh
