@@ -1,6 +1,4 @@
-//
-// Created by nikolaspatrik on 8.12.2018.
-//
+
 
 #include <string>
 #include "llvm/Pass.h"

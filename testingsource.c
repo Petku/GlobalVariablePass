@@ -1,8 +1,3 @@
-//
-// Created by nikolaspatrik on 27.12.2018.
-//
-
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
